@@ -1,0 +1,42 @@
+background     0    背景
+hat            1    帽子
+hair           2    头发
+sunglass       3    太阳镜
+upper-clothes  4    上衣
+skirt          5    裙子
+pants          6    裤子
+dress          7    礼服
+belt           8    皮带
+left-shoe      9    左鞋
+right-shoe     10   右鞋
+face           11   脸蛋
+left-leg       12   左腿
+right-leg      13   右腿
+left-arm       14   左臂
+right-arm      15   右臂
+bag            16   袋子
+scarf          17   围巾
+
+
+
+
+#不确定有多少个类别的话可以通过如下代码进行验证
+
+tqdm_batch = tqdm(dataloader)
+print('Calculating classes weights')
+for sample in tqdm_batch:
+    img = sample['image']
+    label = sample['label']
+    print(img.shape)
+    print(label.shape)
+    y = sample['label']
+    y = y.detach().cpu().numpy()
+    print(np.max(y))
+    print(np.unique(y))
+    print("============")
+我验证之后的输出都是如下：
+96%|█████████▋| 27/28 [10:59<00:24, 24.56s/it]torch.Size([340, 3, 513, 513])
+torch.Size([340, 513, 513])
+17.0
+[ 0.  1.  2.  3.  4.  5.  6.  7.  8.  9. 10. 11. 12. 13. 14. 15. 16. 17.]
+============
